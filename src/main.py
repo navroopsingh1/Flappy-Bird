@@ -18,6 +18,14 @@ def msgSurface(text):
 
 	titleTextSurf, titleTextRect = makeTextObjs(text, largeText)
 	titleTextRect.center = surfaceWidth/2, surfaceHeight/2
+	surface.blit(titleTextSurf, titleTextRect)
+
+	typTextSurf, typTextRect = makeTextObjs('Press any key to continue', smallText)
+	titleTextRect.center = surfaceWidth/2, ((surfaceHeight/2) + 100)
+	surface.blit(typTextSurf, typTextRect)
+
+	pygame.display.update()
+	time.sleep(1)
 
 
 def gameOver():
