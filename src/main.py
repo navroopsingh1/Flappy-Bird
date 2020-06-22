@@ -17,6 +17,11 @@ surface = pygame.display.set_mode((surfaceWidth, surfaceHeight))
 pygame.display.set_caption('Flappy Bird')
 clock = pygame.time.Clock()
 
+def score(count):
+	font = pygame.font.Font('freesansbold.ttf', 20)
+	text = font.render("Score: "+str(count), True, white)
+	surface.blit(text, [0,0])
+
 def blocks(x_block, y_block, block_width, block_height, gap):
 	pygame.draw.rect(surface, white, [x_block, y_block, block_width, block_height])
 	pygame.draw.rect(surface, white, [x_block, y_block+block_height+gap, block_width, surfaceHeight])
@@ -78,8 +83,7 @@ def main():
 	block_height = randint(0, surfaceHeight/2)
 	gap = imageHeight*3
 	block_move = 5
-
-
+	current_score = 0
 	game_over = False
 
 	while not game_over:
@@ -98,6 +102,7 @@ def main():
 
 		surface.fill(black)
 		helicopter(x, y, img)
+		score(current_score)
 
 		blocks(x_block, y_block, block_width, block_height, gap)
 		x_block -= block_move
@@ -119,6 +124,9 @@ def main():
 			if y + imageHeight > block_height+gap:
 				if x < block_width+x_block:
 					gameOver()
+
+		current_score = current_score + 1
+
 
 		pygame.display.update()
 		clock.tick(60)
