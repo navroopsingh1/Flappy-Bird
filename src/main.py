@@ -2,7 +2,7 @@ import pygame
 import time
 from random import randint
 
-black = (0,0,0)
+black = (85,107,47)
 white = (255,255,255)
 
 pygame.init()
@@ -19,7 +19,7 @@ clock = pygame.time.Clock()
 
 def blocks(x_block, y_block, block_width, block_height, gap):
 	pygame.draw.rect(surface, white, [x_block, y_block, block_width, block_height])
-	pygame.draw.rect(surface, white, [x_block, y_block+block_height+gap, block_width, block_height])
+	pygame.draw.rect(surface, white, [x_block, y_block+block_height+gap, block_width, surfaceHeight])
 
 
 def replay_or_quit():
@@ -75,7 +75,7 @@ def main():
 	x_block = surfaceWidth
 	y_block = 0
 	block_width = 75
-	block_height = randint(0, surfaceHeight)
+	block_height = randint(0, surfaceHeight/2)
 	gap = imageHeight*3
 	block_move = 3
 
@@ -104,6 +104,10 @@ def main():
 
 		if y > surfaceHeight-50 or y < 0:
 			gameOver()
+
+		if x_block < (-1*block_width):
+			x_block = surfaceWidth
+			block_height = randint(0, (surfaceHeight/2))
 
 		pygame.display.update()
 		clock.tick(60)
