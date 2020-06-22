@@ -115,6 +115,11 @@ def main():
 					if x - imageWidth < block_width + x_block:
 						gameOver()
 
+		if x + imageWidth > x_block:
+			if y + imageHeight > block_height+gap:
+				if x < block_width+x_block:
+					gameOver()
+
 		pygame.display.update()
 		clock.tick(60)
 
