@@ -60,7 +60,7 @@ def msgSurface(text):
 
 
 def gameOver():
-	msgSurface('Kaboom!')
+	msgSurface('Game Over!')
 
 def helicopter(x, y, image):
 	surface.blit(img, (x,y))
@@ -77,7 +77,7 @@ def main():
 	block_width = 75
 	block_height = randint(0, surfaceHeight/2)
 	gap = imageHeight*3
-	block_move = 3
+	block_move = 5
 
 
 	game_over = False
@@ -108,6 +108,12 @@ def main():
 		if x_block < (-1*block_width):
 			x_block = surfaceWidth
 			block_height = randint(0, (surfaceHeight/2))
+
+		if x + imageWidth > x_block:
+			if x < x_block+block_width:
+				if y < block_height:
+					if x - imageWidth < block_width + x_block:
+						gameOver()
 
 		pygame.display.update()
 		clock.tick(60)
